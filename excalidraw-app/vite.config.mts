@@ -56,7 +56,7 @@ export default defineConfig({
     checker({
       typescript: true,
       eslint:
-        envVars.VITE_APP_ENABLE_ESLINT === "false"
+        envVars.VITE_APP_ENABLE_ESLINT === "false" || process.env.NODE_ENV === 'production'
           ? undefined
           : { lintCommand: 'eslint "./**/*.{js,ts,tsx}"' },
       overlay: {
