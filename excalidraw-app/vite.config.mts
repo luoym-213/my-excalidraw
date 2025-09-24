@@ -11,6 +11,7 @@ import { woff2BrowserPlugin } from "../scripts/woff2/woff2-vite-plugins";
 const envVars = loadEnv("", `../`);
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/my-excalidraw/' : '/',
   server: {
     port: Number(envVars.VITE_APP_PORT || 3000),
     // open the browser
@@ -137,13 +138,13 @@ export default defineConfig({
             type: "image/png",
           },
         ],
-        start_url: "/",
+        start_url: process.env.NODE_ENV === 'production' ? '/my-excalidraw/' : '/',
         display: "standalone",
         theme_color: "#121212",
         background_color: "#ffffff",
         file_handlers: [
           {
-            action: "/",
+          action: process.env.NODE_ENV === 'production' ? '/my-excalidraw/' : '/',
             accept: {
               "application/vnd.excalidraw+json": [".excalidraw"],
             },
